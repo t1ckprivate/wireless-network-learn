@@ -1,0 +1,9 @@
+dhcp enable
+interface vlanif 100
+ip address 192.168.100.1 24
+dhcp select interface
+quit
+interface vlanif 101
+ip address 192.168.101.1 24
+dhcp select interface
+quit

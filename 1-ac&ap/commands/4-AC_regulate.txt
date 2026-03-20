@@ -1,0 +1,5 @@
+regulatory-domain-profile name default
+country-code cn
+quit
+ap-group name ap1
+regulatory-domain-profile default

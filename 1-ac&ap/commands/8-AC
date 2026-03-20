@@ -1,0 +1,4 @@
+ap-group name ap1
+vap-profile wlan-net wlan 1 radio 0
+vap-profile wlan-net wlan 1 radio 1
+quit

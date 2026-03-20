@@ -1,0 +1,6 @@
+vap-profile name wlan-net
+forward-mode direct-forward
+service-vlan vlan-id 101
+security-profile wlan-net
+ssid-profile wlan-net
+quit

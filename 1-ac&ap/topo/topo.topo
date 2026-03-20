@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UNICODE" ?>
+<topo version="1.3.00.100">
+    <devices>
+        <dev id="3C575DC9-0F03-4816-B62E-E3936BD6FABA" name="AC1" poe="1" model="AC6005" settings="" system_mac="00-E0-FC-4F-48-C1" com_port="2001" bootmode="0" cx="262.000000" cy="67.000000" edit_left="289" edit_top="121">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="GE" count="8" />
+            </slot>
+        </dev>
+        <dev id="AA5B8221-0327-46d9-87AE-BF4B853FB756" name="AP1" poe="0" model="AP2050" settings=" -apMac 00-E0-FC-74-30-80 -apSN 2102354483105331AB28" system_mac="00-E0-FC-74-30-80" com_port="2000" bootmode="0" cx="266.000000" cy="269.000000" edit_left="293" edit_top="323">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="GE" count="5" />
+            </slot>
+        </dev>
+        <dev id="902D4349-6004-4eff-ACE6-79A6E5ED773C" name="STA1" poe="0" model="STA" settings=" -simsta_ip 0.0.0.0  -simsta_mask 0.0.0.0  -simsta_gateway 0.0.0.0  -simsta_mac 54-89-98-76-18-26  -simsta_check 0 " system_mac="54-89-98-76-18-26" com_port="0" bootmode="0" cx="188.000000" cy="405.000000" edit_left="215" edit_top="459">
+            <slot number="slot17" isMainBoard="1" />
+        </dev>
+    </devices>
+    <lines>
+        <line srcDeviceID="3C575DC9-0F03-4816-B62E-E3936BD6FABA" destDeviceID="AA5B8221-0327-46d9-87AE-BF4B853FB756">
+            <interfacePair lineName="Copper" srcIndex="0" srcBoundRectIsMoved="0" srcBoundRect_X="289.854950" srcBoundRect_Y="137.175308" srcOffset_X="0.000000" srcOffset_Y="0.000000" tarIndex="0" tarBoundRectIsMoved="0" tarBoundRect_X="292.145050" tarBoundRect_Y="252.824692" tarOffset_X="0.000000" tarOffset_Y="0.000000" />
+        </line>
+    </lines>
+    <shapes />
+    <txttips />
+</topo>

@@ -1,0 +1,6 @@
+security-profile name wlan-net
+security open
+quit
+ssid-profile name wlan-net
+ssid wlan-net
+quit
