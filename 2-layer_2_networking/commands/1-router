@@ -1,0 +1,10 @@
+system-view
+sysname Router
+vlan batch 101
+interface Ethernet0/0/0
+port link-type trunk
+port trunk allow-pass vlan 101
+quit
+interface vlanif 101
+ip address 192.168.101.2 24
+quit

@@ -1,0 +1,5 @@
+wlan
+ap auth-mode mac-auth
+ap-id 0 ap-mac 00E0-FCB3-3380
+ap-name area_1
+ap-group ap1

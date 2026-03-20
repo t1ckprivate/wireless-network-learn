@@ -1,2 +1,2 @@
-# network-autoopration-learn
-- 一个学习自动化运维的仓库
+# wireless-network-learn
+- 一个学习无线组网的仓库

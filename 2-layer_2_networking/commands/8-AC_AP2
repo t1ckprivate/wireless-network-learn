@@ -1,0 +1,7 @@
+quit
+capwap source interface vlanif 100
+wlan
+ap auth-mode mac-auth
+ap-id 1 ap-mac 00E0-FCA5-76B0
+ap-name area_2
+ap-group ap1

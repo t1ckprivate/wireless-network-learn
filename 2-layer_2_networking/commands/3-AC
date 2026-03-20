@@ -1,0 +1,8 @@
+system-view
+sysname AC
+vlan batch 100 101
+
+interface gigabitethernet 0/0/1
+port link-type trunk
+port trunk allow-pass vlan 100 101
+quit
