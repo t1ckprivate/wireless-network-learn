@@ -1,0 +1,12 @@
+vlan pool sta-pool
+vlan 101 102
+assignment hash
+quit
+wlan
+ap-group name ap1
+quit
+regulatory-domain-profile name default
+country-code cn
+quit
+ap-group name ap1
+regulatory-domain-profile default

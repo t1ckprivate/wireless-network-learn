@@ -1,0 +1,16 @@
+security-profile name wlan-net
+security open
+quit
+ssid-profile name wlan-net
+ssid wlan-net
+quit
+vap-profile name wlan-net
+forward-mode direct-forward
+service-vlan vlan-pool sta-pool
+security-profile wlan-net
+ssid-profile wlan-net
+quit
+ap-group name ap1
+vap-profile wlan-net wlan 1 radio 0
+vap-profile wlan-net wlan 1 radio 1
+quit
