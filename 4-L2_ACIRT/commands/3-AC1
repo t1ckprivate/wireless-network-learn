@@ -1,0 +1,70 @@
+system-view
+sysname AC_1
+vlan batch 100 101
+interface gigabitethernet 0/0/1
+port link-type trunk
+port trunk allow-pass vlan 100
+quit
+interface gigabitethernet 0/0/2
+port link-type trunk
+port trunk allow-pass vlan 100 101
+quit
+interface vlanif 100
+ip address 10.23.100.1 255.255.255.0
+quit
+interface vlanif 101
+ip address 10.23.101.1 255.255.255.0
+quit
+
+
+dhcp enable
+interface vlanif 100
+dhcp select interface
+dhcp server excluded-ip-address 10.23.100.2
+quit
+interface vlanif 101
+dhcp select interface
+dhcp server excluded-ip-address 10.23.101.2
+quit
+wlan
+ap-group name ap1
+quit
+regulatory-domain-profile name default
+country-code cn
+quit
+ap-group name ap1
+regulatory-domain-profile default
+# y
+
+quit
+quit
+capwap source interface vlanif 100
+wlan
+ap auth-mode mac-auth
+ap-id 0 ap-mac 00e0-fc4c-7e40
+ap-name area_1
+ap-group ap1
+# y
+
+quit
+security-profile name wlan-net
+security wpa-wpa2 psk pass-phrase a1234567 aes
+quit
+ssid-profile name wlan-net
+ssid wlan-net
+quit
+vap-profile name wlan-net
+forward-mode tunnel
+service-vlan vlan-id 101
+security-profile wlan-net
+ssid-profile wlan-net
+quit
+ap-group name ap1
+vap-profile wlan-net wlan 1 radio 0
+vap-profile wlan-net wlan 1 radio 1
+quit
+
+mobility-group name mobility
+member ip-address 10.23.100.1
+member ip-address 10.23.100.2
+quit

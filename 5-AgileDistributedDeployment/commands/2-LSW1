@@ -1,0 +1,16 @@
+system-view
+sysname Switch
+vlan batch 101
+interface gigabitethernet 0/0/1
+port link-type trunk
+port trunk allow-pass vlan 101
+port-isolate enable
+quit
+interface gigabitethernet 0/0/2
+port link-type trunk
+port trunk allow-pass vlan 101
+quit
+interface gigabitethernet 0/0/3
+port link-type trunk
+port trunk allow-pass vlan 101
+quit

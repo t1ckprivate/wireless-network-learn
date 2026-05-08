@@ -1,0 +1,17 @@
+sys
+sysname switch
+vlan 100
+quit
+interface GigabitEthernet 0/0/1
+port link-type trunk
+port trunk allow-pass vlan 100
+quit
+interface GigabitEthernet 0/0/2
+port link-type trunk
+port trunk pvid vlan 100
+port trunk allow-pass vlan 100
+quit
+interface GigabitEthernet 0/0/3
+port link-type access
+port default vlan 100
+quit

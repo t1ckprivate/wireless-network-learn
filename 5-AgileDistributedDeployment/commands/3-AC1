@@ -1,0 +1,72 @@
+system-view
+sysname AC
+vlan batch 100 101
+interface gigabitethernet 0/0/1
+port hybrid pvid vlan 100
+port hybrid untagged vlan 100 to 101
+quit
+dhcp enable
+interface vlanif 100
+ip address 10.23.100.1 24
+dhcp select interface
+quit
+interface vlanif 101
+ip address 10.23.101.1 24
+dhcp select interface
+quit
+wlan
+ap-group name ap1
+quit
+ap-group name ap-group2
+quit
+regulatory-domain-profile name default
+country-code cn
+quit
+ap-group name ap1
+regulatory-domain-profile default
+# y
+
+quit
+ap-group name ap-group2
+regulatory-domain-profile default
+# y
+
+quit
+quit
+capwap source interface vlanif 100
+wlan
+ap auth-mode mac-auth
+ap-id 0 ap-mac 00e0-fcd1-2060
+ap-name center_ap
+ap-group ap-group2
+# y
+
+quit
+ap-id 1 ap-mac 00e0-fc70-4190
+ap-name ru_1
+ap-group ap1
+# y
+
+quit
+ap-id 2 ap-mac 00e0-fcf6-25b0
+ap-name ru_2
+ap-group ap1
+# y
+
+quit
+security-profile name wlan-net
+security open
+quit
+ssid-profile name wlan-net
+ssid wlan-net
+quit
+vap-profile name wlan-net
+forward-mode tunnel
+service-vlan vlan-id 101
+security-profile wlan-net
+ssid-profile wlan-net
+quit
+ap-group name ap1
+vap-profile wlan-net wlan 1 radio 0
+vap-profile wlan-net wlan 1 radio 1
+quit

@@ -1,0 +1,74 @@
+sys
+sysname AC
+vlan 100
+quit
+interface GigabitEthernet 0/0/1
+port link-type trunk
+port trunk allow-pass vlan 100
+quit
+dhcp enable
+interface vlanif 100
+ip address 192.168.100.1 24
+dhcp select interface
+dhcp server excluded-ip-address 192.168.100.254
+quit
+wlan
+ap-group name ap1
+quit
+regulatory-domain-profile name default
+country-code cn
+quit
+ap-group name ap1
+regulatory-domain-profile default
+# y
+
+quit
+quit
+capwap source interface vlanif 100
+wlan
+ap auth-mode mac-auth
+ap-id 0 ap-mac 00e0-fc9d-2050
+ap-name area_1
+ap-group ap1
+# y
+
+quit
+radius-server template radius_huawei
+radius-server authentication 192.168.100.254 1812
+radius-server accounting 192.168.100.254 1813
+radius-server shared-key cipher WinRadius
+quit
+aaa
+authentication-scheme radius_huawei
+authentication-mode radius
+quit
+accounting-scheme radius_huawei
+accounting-mode radius
+quit
+quit
+mac-access-profile name mac-access
+quit
+authentication-profile name wlan-authentication
+mac-access-profile mac-access
+authentication-scheme radius_huawei
+accounting-scheme radius_huawei
+radius-server radius_huawei
+quit
+wlan
+ssid-profile name wlan-net
+ssid wlan-net
+quit
+security-profile name wlan-net
+security open
+quit
+vap-profile name wlan-net
+forward-mode tunnel
+service-vlan vlan-id 1
+security-profile wlan-net
+ssid-profile wlan-net
+authentication-profile wlan-authentication
+quit
+ap-group name ap1
+vap-profile wlan-net wlan 1 radio 0
+vap-profile wlan-net wlan 1 radio 1
+quit

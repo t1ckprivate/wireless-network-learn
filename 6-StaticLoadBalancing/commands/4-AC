@@ -1,0 +1,91 @@
+system-view
+sysname AC
+vlan batch 100
+interface vlanif 100
+ip address 10.23.100.1 24
+quit
+interface gigabitethernet 0/0/1
+port link-type trunk
+port trunk allow-pass vlan 100
+quit
+
+dhcp enable
+ip pool huawei
+network 10.23.10.0 mask 24
+gateway-list 10.23.10.1
+option 43 sub-option 3 ascii 10.23.100.1
+quit
+interface vlanif 100
+dhcp select global
+quit
+vlan pool sta-pool
+vlan 101 102
+assignment hash
+quit
+wlan
+ap-group name ap1
+quit
+regulatory-domain-profile name default
+country-code cn
+quit
+ap-group name ap1
+regulatory-domain-profile default
+# y
+
+quit
+quit
+capwap source interface vlanif 100
+wlan
+ap auth-mode mac-auth
+ap-id 0 ap-mac 00E0-FCC9-0E00
+ap-name area_1
+ap-group ap1
+# y
+
+quit
+ap-id 1 ap-mac 00E0-FC90-1890
+ap-name area_2
+ap-group ap1
+# y
+
+quit
+security-profile name wlan-net
+security wpa-wpa2 psk pass-phrase a1234567 aes
+quit
+ssid-profile name wlan-net
+ssid wlan-net
+quit
+vap-profile name wlan-net
+forward-mode direct-forward
+service-vlan vlan-pool sta-pool
+security-profile wlan-net
+ssid-profile wlan-net
+quit
+ap-group name ap1
+vap-profile wlan-net wlan 1 radio 0
+vap-profile wlan-net wlan 1 radio 1
+quit
+rrm-profile name default
+calibrate auto-channel-select disable
+calibrate auto-txpower-select disable
+quit
+ap-id 0
+radio 0
+channel 20mhz 6
+# y
+
+eirp 127
+quit
+radio 1
+channel 20mhz 149
+# y
+
+eirp 127
+quit
+quit
+sta-load-balance static-group name wlan-static
+member ap-name area_1
+member ap-name area_2
+start-threshold 10
+gap-threshold 5
+quit

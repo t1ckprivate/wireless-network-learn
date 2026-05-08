@@ -1,0 +1,12 @@
+system-view
+sysname Switch_1
+vlan batch 100
+interface gigabitethernet 0/0/1
+port link-type trunk
+port trunk pvid vlan 100
+port trunk allow-pass vlan 100
+quit
+interface gigabitethernet 0/0/2
+port link-type trunk
+port trunk allow-pass vlan 100
+quit
