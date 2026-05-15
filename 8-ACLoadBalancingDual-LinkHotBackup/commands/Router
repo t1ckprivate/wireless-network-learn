@@ -1,0 +1,27 @@
+system-view
+sysname Router
+vlan batch 100 101
+interface e0/0/0
+port link-type trunk
+port trunk allow-pass vlan 100 101
+quit
+
+dhcp enable
+ip pool sta
+network 10.23.101.0 mask 24
+gateway-list 10.23.101.1
+quit
+ip pool ap
+network 10.23.100.0 mask 24
+excluded-ip-address 10.23.100.2
+excluded-ip-address 10.23.100.3
+gateway-list 10.23.100.1
+quit
+interface vlanif 100
+ip address 10.23.100.1 24
+dhcp select global
+quit
+interface vlanif 101
+ip address 10.23.101.1 24
+dhcp select global
+quit

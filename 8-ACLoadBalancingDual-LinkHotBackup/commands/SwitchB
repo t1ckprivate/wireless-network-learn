@@ -1,0 +1,19 @@
+system-view
+sysname SwitchB
+vlan batch 100 to 102
+interface gigabitethernet 0/0/1
+port link-type trunk
+port trunk allow-pass vlan 100 101
+quit
+interface gigabitethernet 0/0/2
+port link-type trunk
+port trunk allow-pass vlan 100 102
+quit
+interface gigabitethernet 0/0/3
+port link-type trunk
+port trunk allow-pass vlan 100 102
+quit
+interface gigabitethernet 0/0/4
+port link-type trunk
+port trunk allow-pass vlan 100 101
+quit

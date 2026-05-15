@@ -1,0 +1,18 @@
+system-view
+sysname SwitchA
+vlan batch 100 101
+interface gigabitethernet 0/0/1
+port link-type trunk
+port trunk pvid vlan 100
+port trunk allow-pass vlan 100 101
+port-isolate enable
+quit
+interface gigabitethernet 0/0/2
+port link-type trunk
+port trunk pvid vlan 100
+port trunk allow-pass vlan 100 101
+quit
+interface gigabitethernet 0/0/3
+port link-type trunk
+port trunk allow-pass vlan 100 101
+quit

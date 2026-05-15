@@ -1,0 +1,97 @@
+system-view
+sysname AC1
+vlan batch 100 to 102
+interface vlanif 100
+ip address 10.23.100.2 24
+quit
+interface vlanif 102
+ip address 10.23.102.1 24
+quit
+interface gigabitethernet 0/0/1
+port link-type trunk
+port trunk allow-pass vlan 100 102
+quit
+
+wlan
+ap-group name ap1
+quit
+ap-group name ap2
+quit
+regulatory-domain-profile name default
+country-code cn
+quit
+ap-group name ap1
+regulatory-domain-profile default
+y
+
+quit
+ap-group name ap2
+regulatory-domain-profile default
+y
+
+quit
+capwap source interface vlanif 100
+wlan
+ap auth-mode mac-auth
+ap-id 0 ap-mac 00e0-fce9-4320
+ap-name area_1
+ap-group ap1
+y
+
+quit
+ap-id 1 ap-mac 00e0-fc06-7dc0
+ap-name area_2
+ap-group ap2
+y
+
+quit
+security-profile name wlan-net
+security wpa-wpa2 psk pass-phrase a1234567 aes
+quit
+ssid-profile name wlan-net
+ssid wlan-net
+quit
+vap-profile name wlan-net
+forward-mode direct-forward
+service-vlan vlan-id 101
+security-profile wlan-net
+ssid-profile wlan-net
+quit
+ap-group name ap1
+vap-profile wlan-net wlan 1 radio 0
+vap-profile wlan-net wlan 1 radio 1
+quit
+ap-group name ap2
+vap-profile wlan-net wlan 1 radio 0
+vap-profile wlan-net wlan 1 radio 1
+quit
+ac protect enable
+y
+
+ap-system-profile name ap-system1
+primary-access ip-address 10.23.100.2
+backup-access ip-address 10.23.100.3
+quit
+ap-system-profile name ap-system2
+primary-access ip-address 10.23.100.3
+backup-access ip-address 10.23.100.2
+quit
+ap-group name ap1
+ap-system-profile ap-system1
+y
+
+quit
+ap-group name ap2
+ap-system-profile ap-system2
+y
+
+quit
+ap-reset all
+y
+quit
+
+hsb-service 0
+service-ip-port local-ip 10.23.102.1 peer-ip 10.23.102.2 local-data-port 10241 peer-data-port 10241
+quit
+hsb-service-type ap hsb-service 0
+hsb-service-type access-user hsb-service 0
